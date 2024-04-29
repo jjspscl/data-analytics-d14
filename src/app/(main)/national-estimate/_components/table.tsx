@@ -3,10 +3,9 @@ import { national_estimates } from "../../../../data/national-estimate"
 const NationalEstimateTable = () => {
     return (
         <div className="flex flex-col bg-white mx-auto container p-5 rounded-md shadow-md">
-            <h1 className="text-2xl font-bold">National Estimates</h1>
             <table className="table-auto">
                 <thead>
-                    <tr>
+                    <tr className="bg-blue-950 text-white">
                         <th className="px-4 py-2">Label</th>
                         <th className="px-4 py-2">Raw Value</th>
                         <th className="px-4 py-2">Percentage</th>

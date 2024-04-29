@@ -42,7 +42,7 @@ const ComplexTable = () => {
             </div>
             <table className="table-auto">
                 <thead>
-                    <tr>
+                    <tr className="bg-blue-950 text-white">
                         <th className="px-4 py-2">Region</th>
                         <th className="px-4 py-2">No. of Obese Cases</th>
                         <th className="px-4 py-2">Percentage</th>
