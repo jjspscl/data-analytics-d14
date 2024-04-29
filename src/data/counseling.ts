@@ -98,3 +98,6 @@ export const counseling_data: {
         ranking: 8
     },
 ]
+
+
+export const counseling_sum = counseling_data.reduce((acc, item) => acc + item.number_of_obese_cases, 0)

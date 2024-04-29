@@ -1,8 +1,9 @@
-import { Info } from 'lucide-react';
-import CounselingTable from './_components/table';
-import CounselingChart from './_components/chart';
 
-const CounselingPage = () => {
+import VirusIcon from '@/assets/virus.svg';
+import ComplexTable from './_components/table';
+import ComplexChart from './_components/chart';
+
+const ComplexPage = () => {
     return (
         <div 
             className='pb-5'
@@ -12,15 +13,16 @@ const CounselingPage = () => {
             backgroundPosition: 'center',
         }}>
             <div className="bg-uerm-dark-blue flex flex-col items-center text-center py-10 mb-7 text-white">
-                <Info className="size-20 mb-4" />
-                <h1>Obesity by which counseling is needed</h1>
+                <VirusIcon className="size-20 mb-4" />
+                <h1>Obese Patients with Complex Healthcare Needs</h1>
             </div>
             <div className='container'>
-                <CounselingChart/>
-                <CounselingTable/>
+                <ComplexChart/>
+                <ComplexTable/>
             </div>
         </div>
-    )
-};
+    );
+}
 
-export default CounselingPage;
+
+export default ComplexPage;

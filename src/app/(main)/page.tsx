@@ -1,13 +1,15 @@
 import Count from '@/components/count';
 import ObeseIcon from '@/assets/obese.svg';
 import USAMap from '@/assets/usa-map.svg';
-import GenderIcon from '@/assets/gender.svg';
 import FamilyIcon from '@/assets/family.svg';
 import VirusIcon from '@/assets/virus.svg';
 import Image from "next/image";
 import { sum_of_obese_cases } from '@/data/state';
 import { national_sum } from '@/data/national-estimate';
 import { Info } from 'lucide-react';
+import { counseling_sum } from '@/data/counseling';
+import { complex_sum } from '@/data/complex';
+import { family_sum } from '@/data/family';
 
 
 export default function Home() {
@@ -74,31 +76,34 @@ export default function Home() {
           <div className='flex-grow flex items-center justify-center'>
             <Info className="size-16 mr-2" />
             <span className='text-5xl'>
-              <Count className='mr-2' start={0} end={100} duration={1} />
-              { '%' }
+              <Count className='mr-2' start={0} end={
+                counseling_sum
+              } duration={1} />
             </span>
           </div>
         </a>
-        <div className="bg-green-500 flex flex-col p-4">
+        <a className="bg-green-500 flex flex-col p-4" href='/complex'>
           <h3>No. of Obese Patients with Complex</h3>
           <div className='flex-grow flex items-center justify-center'>
             <VirusIcon className="size-28 fill-white" />
             <span className='text-5xl'>
-              <Count className='mr-2' start={0} end={100} duration={1} />
-              { '%' }
+              <Count className='mr-2' start={0} end={
+                complex_sum
+              } duration={1} />
             </span>
           </div>
-        </div>
-        <div className="bg-purple-500 flex flex-col p-4">
+        </a>
+        <a className="bg-purple-500 flex flex-col p-4" href='/family'>
           <h3>Family Resilience</h3>
           <div className='flex-grow flex items-center justify-center'>
             <FamilyIcon className="size-16 fill-white" />
             <span className='text-5xl'>
-              <Count className='mr-2' start={0} end={100} duration={1} />
-              { '%' }
+              <Count className='mr-2' start={0} end={
+                family_sum
+              } duration={1} />
             </span>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   );
