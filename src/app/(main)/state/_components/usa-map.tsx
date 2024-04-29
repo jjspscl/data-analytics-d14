@@ -1,4 +1,6 @@
 'use client';
+
+//@ts-ignore
 import ReactUSAMap from 'react-usa-map';
 
 import { state_data } from '@/data/state';
@@ -26,14 +28,16 @@ const StateDialog = ({ state }: IState) => {
     )
 }
 
-const customize = state_data.reduce((acc, item) => {
+const customize = state_data.reduce<
+    any
+>((acc, item) => {
    
     acc[item.abbreviation] = {
         fill: item.state_performance === 'Significantly Lower than U.S.' ? 'green' : 
               item.state_performance === 'Lower than U.S. but Not Significant' ? 'lightgreen' :
               item.state_performance === 'Higher than U.S. but Not Significant' ? 'yellow' :
               item.state_performance === 'Significantly Higher than U.S.' ? 'red' : 'blue',
-        clickHandler: (event) => alert(`${item.state}`)
+        clickHandler: (event: any) => alert(`${item.state}`)
     }
     return acc
 }, {})
