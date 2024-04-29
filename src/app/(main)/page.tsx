@@ -7,6 +7,7 @@ import VirusIcon from '@/assets/virus.svg';
 import Image from "next/image";
 import { sum_of_obese_cases } from '@/data/state';
 import { national_sum } from '@/data/national-estimate';
+import { Info } from 'lucide-react';
 
 
 export default function Home() {
@@ -68,16 +69,16 @@ export default function Home() {
             </span>
           </div>
         </a>
-        <div className="bg-orange-500 flex flex-col p-4">
-          <h3>No. of Obese Cases by Gender</h3>
+        <a className="bg-orange-500 flex flex-col p-4" href='/counseling'>
+          <h3>No. of Obese by which Counseling is needed</h3>
           <div className='flex-grow flex items-center justify-center'>
-            <GenderIcon className="size-16 fill-white mr-2" />
+            <Info className="size-16 mr-2" />
             <span className='text-5xl'>
               <Count className='mr-2' start={0} end={100} duration={1} />
               { '%' }
             </span>
           </div>
-        </div>
+        </a>
         <div className="bg-green-500 flex flex-col p-4">
           <h3>No. of Obese Patients with Complex</h3>
           <div className='flex-grow flex items-center justify-center'>
