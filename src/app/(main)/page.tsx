@@ -14,14 +14,12 @@ import { family_sum } from '@/data/family';
 
 export default function Home() {
   return (
-    <div className="flex flex-col text-white">
+    <div className="flex flex-col text-white relative">
       <Image
         src="/images/hospital.png"
-        layout="fill"
-        objectFit="cover"
-        objectPosition="center"
+        fill
         alt="background"
-        className='-z-50 opacity-20'
+        className='-z-50 opacity-20 top-0 left-0 w-full h-full object-cover object-center'
       />
       <div className="bg-uerm-dark-blue flex flex-col items-center text-center py-10 mb-7">
         <Image  

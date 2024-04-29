@@ -4,34 +4,17 @@
 import ReactUSAMap from 'react-usa-map';
 
 import { state_data } from '@/data/state';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
-const StateDialog = ({ state }: IState) => {
-    return (
-        <Dialog>
-            <DialogTrigger>Open</DialogTrigger>
-            <DialogContent>
-                <DialogHeader>
-                <DialogTitle>Are you absolutely sure?</DialogTitle>
-                <DialogDescription>
-                    This action cannot be undone. This will permanently delete your account
-                    and remove your data from our servers.
-                </DialogDescription>
-                </DialogHeader>
-            </DialogContent>
-            </Dialog>
-    )
-}
 
 const customize = state_data.reduce<
     any
 >((acc, item) => {
    
     acc[item.abbreviation] = {
-        fill: item.state_performance === 'Significantly Lower than U.S.' ? '#10B981' : 
-              item.state_performance === 'Lower than U.S. but Not Significant' ? '#6EE7B7' :
-              item.state_performance === 'Higher than U.S. but Not Significant' ? '#34D399' :
-              item.state_performance === 'Significantly Higher than U.S.' ? '#10B981' 
+        fill: item.state_performance === 'Significantly Lower than U.S.' ? '#3ff6b9' :
+              item.state_performance === 'Lower than U.S. but Not Significant' ? '#21e1a1' :
+              item.state_performance === 'Higher than U.S. but Not Significant' ? '#1fb885' :
+              item.state_performance === 'Significantly Higher than U.S.' ? '#0d9669'
               : 'red',
         clickHandler: (event: any) => alert(`${item.state}`)
     }
@@ -40,8 +23,30 @@ const customize = state_data.reduce<
 
 const USAMap = () => {
     return (
-        <div className='flex justify-center mb-10 bg-opacity-45 bg-white rounded-md mx-auto container p-5 shadow-md'>
-            <ReactUSAMap customize={customize}/>
+        <div className='flex flex-col justify-center mb-10 bg-opacity-45 bg-white rounded-md mx-auto container p-5 shadow-md'>
+            <div className='flex justify-center'>
+                <ReactUSAMap customize={customize}/>
+            </div>
+            {/* LEGEND */}
+            <div className="flex justify-center space-x-5 mt-5">
+                <div className="flex items-center space-x-2">
+                    <div className="w-5 h-5 bg-[#3ff6b9]"></div>
+                    <span>Significantly Lower than U.S.</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                    <div className="w-5 h-5 bg-[#21e1a1]"></div>
+                    <span>Lower than U.S. but Not Significant</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                    <div className="w-5 h-5 bg-[#1fb885]"></div>
+                    <span>Higher than U.S. but Not Significant</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                    <div className="w-5 h-5 bg-[#0d9669]"></div>
+                    <span>Significantly Higher than U.S.</span>
+                </div>
+
+            </div>
         </div>
     )
 }
