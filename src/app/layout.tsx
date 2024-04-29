@@ -17,9 +17,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <title>YES</title>
+        <title>Data Analytics Dashboard</title>
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} min-h-screen`}>{children}</body>
     </html>
   );
 }
