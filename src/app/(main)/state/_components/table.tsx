@@ -1,10 +1,42 @@
 
+'use client';
+
 import { state_data } from "@/data/state";
+import { useMemo, useState } from "react";
 
 const StateTable = () => {
+    const sort_by = useState<'state' | 'ranking'>('state');
+    const data = useMemo(() => {
+        return state_data
+            .sort((a, b) => {
+                if (sort_by[0] === 'state') {
+                    return a.state.localeCompare(b.state);
+                } else {
+                    return a.ranking - b.ranking;
+                }
+            });
+    }, [sort_by]);   
+
     return (
         <div className="flex flex-col bg-white mx-auto container p-5 rounded-md shadow-md">
-            <h1 className="text-2xl font-bold">National Estimates</h1>
+            <div className="flex justify-end mb-5 space-x-3">
+                <button 
+                    className={`bg-uerm-dark-blue text-white px-3 py-1 rounded-md ${
+                        sort_by[0] === 'state' ? 'bg-opacity-100' : 'bg-opacity-50'
+                    }`}
+                    onClick={() => sort_by[1]('state')}
+                >
+                    Sort by State
+                </button>
+                <button 
+                    className={`bg-uerm-dark-blue text-white px-3 py-1 rounded-md ${
+                        sort_by[0] === 'ranking' ? 'bg-opacity-100' : 'bg-opacity-50'
+                    }`}
+                    onClick={() => sort_by[1]('ranking')}
+                >
+                    Sort by Ranking
+                </button>
+            </div>
             <table className="table-auto">
                 <thead>
                     <tr>
@@ -18,9 +50,7 @@ const StateTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {state_data
-                        // sort by name
-                        .sort((a, b) => a.state.localeCompare(b.state))
+                    {data
                         .map((item, index) => (
                         <tr key={index}>
                             <td className="border px-4 py-2">{item.state}</td>

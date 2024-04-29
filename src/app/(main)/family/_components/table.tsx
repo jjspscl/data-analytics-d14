@@ -1,9 +1,40 @@
+'use client';
 import { family_data } from "@/data/family";
+import { useMemo, useState } from "react";
 
 
 const FamilyTable = () => {
+    const sort_by = useState<'region' | 'ranking'>('region');
+    const data = useMemo(() => {
+        return family_data
+            .sort((a, b) => {
+                if (sort_by[0] === 'region') {
+                    return a.region.localeCompare(b.region);
+                } else {
+                    return a.ranking - b.ranking;
+                }
+            });
+    }, [sort_by]);   
     return (
         <div className="flex flex-col bg-white mx-auto container p-5 rounded-md shadow-md">
+            <div className="flex justify-end mb-5 space-x-3">
+                <button 
+                    className={`bg-uerm-dark-blue text-white px-3 py-1 rounded-md ${
+                        sort_by[0] === 'region' ? 'bg-opacity-100' : 'bg-opacity-50'
+                    }`}
+                    onClick={() => sort_by[1]('region')}
+                >
+                    Sort by Region
+                </button>
+                <button 
+                    className={`bg-uerm-dark-blue text-white px-3 py-1 rounded-md ${
+                        sort_by[0] === 'ranking' ? 'bg-opacity-100' : 'bg-opacity-50'
+                    }`}
+                    onClick={() => sort_by[1]('ranking')}
+                >
+                    Sort by Ranking
+                </button>
+            </div>
             <table className="table-auto">
                 <thead>
                     <tr>
@@ -17,9 +48,7 @@ const FamilyTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {family_data
-                        // sort by name
-                        .sort((a, b) => a.region.localeCompare(b.region))
+                    {data
                         .map((item, index) => (
                         <tr key={index}>
                             <td className="border px-4 py-2">{item.region}</td>
